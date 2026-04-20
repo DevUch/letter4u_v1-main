@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Letter4U | Viewer</title>
+  <meta name="description" content="Open and experience a Letter4U digital letter with immersive visuals and memories." />
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="canonical" href="https://letter4u.me/viewer" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Letter4U" />
+  <meta property="og:title" content="Letter4U | Digital Letter Viewer" />
+  <meta property="og:description" content="View digital love letters and memory slideshows from Letter4U." />
+  <meta property="og:url" content="https://letter4u.me/viewer" />
+  <meta property="og:image" content="https://letter4u.me/public/images/preview.png" />
+  <meta property="og:image:secure_url" content="https://letter4u.me/public/images/preview.png" />
+  <meta property="og:image:alt" content="Letter4U preview image" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Letter4U | Digital Letter Viewer" />
+  <meta name="twitter:description" content="View digital love letters and memory slideshows from Letter4U." />
+  <meta name="twitter:image" content="https://letter4u.me/public/images/preview.png" />
+  <meta name="theme-color" content="#78555e" />
+  <link rel="icon" type="image/png" href="/public/images/icon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;700;800&family=Manrope:wght@400;500;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Caveat:wght@500;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/css/tailwind.generated.css" />
+  <link rel="stylesheet" href="/css/site.css" />
+</head>
+<body class="l4u-body bg-lfu-surface text-lfu-ink font-body" data-page="viewer">
+  <div id="viewerLoadingScreen" class="l4u-viewer-loading" role="status" aria-live="polite">
+    <div class="l4u-viewer-loading-inner">
+      <img src="/public/images/icon.png" alt="Letter4U icon" class="l4u-viewer-loading-icon" />
+      <p class="l4u-viewer-loading-text">Loading your page...</p>
+      <div class="l4u-viewer-loading-dots" aria-hidden="true">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </div>
+
+  <div class="l4u-background" aria-hidden="true">
+    <span class="l4u-blob l4u-blob-a"></span>
+    <span class="l4u-blob l4u-blob-b"></span>
+    <span class="l4u-blob l4u-blob-c"></span>
+  </div>
+
+  <div data-l4u-nav></div>
+
+  <main class="relative z-10 pb-12">
+    <section id="viewerLetterSection" class="mx-auto w-full max-w-5xl px-4 pt-10 md:px-8">
+      <article id="viewerLetterClassicCard" class="l4u-surface-glass rounded-[2rem] p-6 shadow-haze md:p-10">
+        <p class="l4u-kicker">Published Letter</p>
+        <p id="viewerStatus" class="mt-3 text-sm text-lfu-outline">Loading page...</p>
+
+        <div id="viewerUnlockPanel" class="mt-6 hidden rounded-3xl bg-white/85 p-5">
+          <p class="text-[0.68rem] font-semibold uppercase tracking-[0.11em] text-lfu-outline">Pin Lock Required</p>
+          <p class="mt-2 text-sm text-lfu-outline">Enter the 4-digit pin to read this page.</p>
+          <div class="mt-4 flex flex-wrap gap-2">
+            <input id="viewerPinInput" type="text" inputmode="numeric" maxlength="4" placeholder="PIN" class="rounded-2xl border-none bg-lfu-surface-low px-4 py-3 text-sm tracking-[0.3em]" />
+            <button id="viewerUnlockButton" type="button" class="l4u-gradient-button rounded-full px-5 py-3 text-xs font-bold uppercase tracking-[0.1em]">Unlock</button>
+          </div>
+          <p id="viewerPinStatus" class="mt-3 text-xs text-lfu-outline"></p>
+        </div>
+
+        <div id="viewerContent" class="mt-6 hidden rounded-3xl bg-white/88 p-6 md:p-8">
+          <div class="flex flex-wrap items-start justify-between gap-3">
+            <h1 id="viewerTitle" class="font-headline text-3xl font-bold text-lfu-primary md:text-4xl">Untitled Letter</h1>
+            <p id="viewerDate" class="text-[0.68rem] font-semibold uppercase tracking-[0.11em] text-lfu-outline">Draft</p>
+          </div>
+
+          <p id="viewerRecipient" class="mt-8 font-headline text-4xl font-bold italic text-lfu-ink md:text-5xl">Dear recipient,</p>
+          <p id="viewerMessage" class="mt-5 whitespace-pre-wrap text-base leading-relaxed text-lfu-outline">No content.</p>
+
+          <div id="viewerPhotoGrid" class="l4u-photo-grid mt-8"></div>
+
+          <p id="viewerClosing" class="mt-8 font-headline text-3xl italic text-lfu-primary">With love,</p>
+          <p id="viewerSignature" class="mt-2 font-headline text-4xl font-bold text-lfu-primary">Your Name</p>
+        </div>
+      </article>
+
+      <section id="viewerLetterImmersive" class="l4u-letter-immersive hidden" aria-label="Love letter lock experience">
+        <div id="viewerLetterVolumeGate" class="l4u-letter-volume-gate" role="dialog" aria-modal="true" aria-labelledby="viewerLetterVolumeTitle">
+          <div class="l4u-letter-volume-card">
+            <p class="l4u-letter-volume-kicker">Best Experience</p>
+            <h2 id="viewerLetterVolumeTitle" class="l4u-letter-volume-title">Raise your volume for a better experience</h2>
+            <p class="l4u-letter-volume-text">A warning tone, unlock effects, and cinematic transitions are part of this private letter.</p>
+            <p class="l4u-letter-volume-text">Tap Continue to start the experience. Background music starts muted and turns on when you open the envelope.</p>
+            <button id="viewerLetterVolumeButton" type="button" class="l4u-letter-volume-button">Continue</button>
+          </div>
+        </div>
+
+        <div id="viewerLetterLockStage" class="l4u-letter-lock-stage">
+          <p class="l4u-letter-lock-kicker">Pin Locked Love Letter</p>
+          <h2 id="viewerLetterLockTitle" class="l4u-letter-lock-title">Enter the Heart Code</h2>
+          <p id="viewerLetterLockStatus" class="l4u-letter-lock-status">Adjust each dial and enter the 4-digit pin.</p>
+
+          <div id="viewerHeartPadlock" class="l4u-heart-padlock" aria-live="polite">
+            <div class="l4u-heart-shackle" aria-hidden="true"></div>
+            <div class="l4u-heart-shell" aria-hidden="true">
+              <span class="l4u-heart-shape"></span>
+            </div>
+            <div class="l4u-heart-inner">
+              <span id="viewerHeartPadlockLed" class="l4u-heart-led" aria-hidden="true"></span>
+              <div id="viewerPinDialHost" class="l4u-pin-dials" role="group" aria-label="Pin dial controls">
+                <div class="l4u-pin-dial" data-index="0">
+                  <button type="button" class="l4u-pin-step" data-index="0" data-step="1" aria-label="Increase first digit">+</button>
+                  <span id="viewerPinDigit0" class="l4u-pin-digit">0</span>
+                  <button type="button" class="l4u-pin-step" data-index="0" data-step="-1" aria-label="Decrease first digit">-</button>
+                </div>
+                <div class="l4u-pin-dial" data-index="1">
+                  <button type="button" class="l4u-pin-step" data-index="1" data-step="1" aria-label="Increase second digit">+</button>
+                  <span id="viewerPinDigit1" class="l4u-pin-digit">0</span>
+                  <button type="button" class="l4u-pin-step" data-index="1" data-step="-1" aria-label="Decrease second digit">-</button>
+                </div>
+                <div class="l4u-pin-dial" data-index="2">
+                  <button type="button" class="l4u-pin-step" data-index="2" data-step="1" aria-label="Increase third digit">+</button>
+                  <span id="viewerPinDigit2" class="l4u-pin-digit">0</span>
+                  <button type="button" class="l4u-pin-step" data-index="2" data-step="-1" aria-label="Decrease third digit">-</button>
+                </div>
+                <div class="l4u-pin-dial" data-index="3">
+                  <button type="button" class="l4u-pin-step" data-index="3" data-step="1" aria-label="Increase fourth digit">+</button>
+                  <span id="viewerPinDigit3" class="l4u-pin-digit">0</span>
+                  <button type="button" class="l4u-pin-step" data-index="3" data-step="-1" aria-label="Decrease fourth digit">-</button>
+                </div>
+              </div>
+              <button id="viewerHeartUnlockButton" type="button" class="l4u-heart-unlock-button">Enter</button>
+            </div>
+          </div>
+        </div>
+
+        <div id="viewerEnvelopeStage" class="l4u-envelope-stage hidden" aria-live="polite">
+          <p class="l4u-envelope-kicker">Unlocked</p>
+          <button id="viewerEnvelopeButton" type="button" class="l4u-envelope-button" aria-label="Open envelope">
+            <span class="l4u-envelope-top" aria-hidden="true"></span>
+            <span class="l4u-envelope-paper" aria-hidden="true"></span>
+            <span class="l4u-envelope-letter" aria-hidden="true"></span>
+            <span class="l4u-envelope-detail-lines" aria-hidden="true"></span>
+            <span class="l4u-envelope-stamp" aria-hidden="true"></span>
+            <span class="l4u-envelope-seal" aria-hidden="true"></span>
+          </button>
+        </div>
+
+        <div id="viewerLetterPaperModal" class="l4u-letter-paper-modal hidden" role="dialog" aria-modal="true" aria-label="Love letter paper">
+          <div class="l4u-letter-paper-shell">
+            <div class="l4u-letter-balloon-rig" aria-hidden="true">
+              <svg class="l4u-balloon-cluster" viewBox="0 0 360 470" aria-hidden="true" focusable="false">
+                <path class="l4u-balloon-string" d="M88 168 C115 245 145 310 176 432"></path>
+                <path class="l4u-balloon-string" d="M132 144 C150 225 162 300 181 432"></path>
+                <path class="l4u-balloon-string" d="M176 160 C180 232 185 315 186 432"></path>
+                <path class="l4u-balloon-string" d="M220 143 C206 222 198 302 190 432"></path>
+                <path class="l4u-balloon-string" d="M262 168 C228 250 212 320 195 432"></path>
+                <path class="l4u-balloon-string" d="M110 213 C138 270 158 332 178 432"></path>
+                <path class="l4u-balloon-string" d="M153 198 C165 264 172 332 183 432"></path>
+                <path class="l4u-balloon-string" d="M198 207 C195 275 192 340 188 432"></path>
+                <path class="l4u-balloon-string" d="M242 196 C218 272 203 334 191 432"></path>
+                <path class="l4u-balloon-string" d="M132 253 C152 300 167 350 181 432"></path>
+                <path class="l4u-balloon-string" d="M177 250 C182 307 186 353 186 432"></path>
+                <path class="l4u-balloon-string" d="M224 246 C206 303 196 351 191 432"></path>
+
+                <circle class="l4u-balloon-anchor" cx="186" cy="435" r="7"></circle>
+                <path class="l4u-balloon-anchor-knot" d="M174 441 L198 441 L186 456 Z"></path>
+
+                <g class="l4u-balloon-node tone-pink-a"><ellipse class="l4u-balloon-body" cx="88" cy="118" rx="30" ry="40"></ellipse><path class="l4u-balloon-knot" d="M88 157 L82 168 L94 168 Z"></path><ellipse class="l4u-balloon-gloss" cx="76" cy="101" rx="7" ry="11"></ellipse></g>
+                <g class="l4u-balloon-node tone-yellow-a"><ellipse class="l4u-balloon-body" cx="132" cy="96" rx="28" ry="37"></ellipse><path class="l4u-balloon-knot" d="M132 133 L126 144 L138 144 Z"></path><ellipse class="l4u-balloon-gloss" cx="121" cy="83" rx="7" ry="10"></ellipse></g>
+                <g class="l4u-balloon-node tone-purple-a"><ellipse class="l4u-balloon-body" cx="176" cy="109" rx="31" ry="41"></ellipse><path class="l4u-balloon-knot" d="M176 149 L170 160 L182 160 Z"></path><ellipse class="l4u-balloon-gloss" cx="164" cy="92" rx="7" ry="11"></ellipse></g>
+                <g class="l4u-balloon-node tone-pink-b"><ellipse class="l4u-balloon-body" cx="220" cy="94" rx="29" ry="38"></ellipse><path class="l4u-balloon-knot" d="M220 132 L214 143 L226 143 Z"></path><ellipse class="l4u-balloon-gloss" cx="209" cy="81" rx="7" ry="10"></ellipse></g>
+                <g class="l4u-balloon-node tone-yellow-b"><ellipse class="l4u-balloon-body" cx="262" cy="118" rx="30" ry="40"></ellipse><path class="l4u-balloon-knot" d="M262 157 L256 168 L268 168 Z"></path><ellipse class="l4u-balloon-gloss" cx="251" cy="102" rx="7" ry="11"></ellipse></g>
+                <g class="l4u-balloon-node tone-purple-b"><ellipse class="l4u-balloon-body" cx="110" cy="164" rx="29" ry="38"></ellipse><path class="l4u-balloon-knot" d="M110 202 L104 213 L116 213 Z"></path><ellipse class="l4u-balloon-gloss" cx="99" cy="151" rx="7" ry="10"></ellipse></g>
+                <g class="l4u-balloon-node tone-pink-a"><ellipse class="l4u-balloon-body" cx="153" cy="150" rx="28" ry="37"></ellipse><path class="l4u-balloon-knot" d="M153 187 L147 198 L159 198 Z"></path><ellipse class="l4u-balloon-gloss" cx="142" cy="137" rx="7" ry="10"></ellipse></g>
+                <g class="l4u-balloon-node tone-yellow-a"><ellipse class="l4u-balloon-body" cx="198" cy="157" rx="30" ry="39"></ellipse><path class="l4u-balloon-knot" d="M198 196 L192 207 L204 207 Z"></path><ellipse class="l4u-balloon-gloss" cx="187" cy="143" rx="7" ry="10"></ellipse></g>
+                <g class="l4u-balloon-node tone-purple-a"><ellipse class="l4u-balloon-body" cx="242" cy="147" rx="29" ry="38"></ellipse><path class="l4u-balloon-knot" d="M242 185 L236 196 L248 196 Z"></path><ellipse class="l4u-balloon-gloss" cx="231" cy="134" rx="7" ry="10"></ellipse></g>
+                <g class="l4u-balloon-node tone-pink-b"><ellipse class="l4u-balloon-body" cx="132" cy="206" rx="28" ry="36"></ellipse><path class="l4u-balloon-knot" d="M132 242 L126 253 L138 253 Z"></path><ellipse class="l4u-balloon-gloss" cx="121" cy="193" rx="7" ry="10"></ellipse></g>
+                <g class="l4u-balloon-node tone-yellow-b"><ellipse class="l4u-balloon-body" cx="177" cy="202" rx="29" ry="37"></ellipse><path class="l4u-balloon-knot" d="M177 239 L171 250 L183 250 Z"></path><ellipse class="l4u-balloon-gloss" cx="166" cy="189" rx="7" ry="10"></ellipse></g>
+                <g class="l4u-balloon-node tone-purple-b"><ellipse class="l4u-balloon-body" cx="224" cy="198" rx="29" ry="37"></ellipse><path class="l4u-balloon-knot" d="M224 235 L218 246 L230 246 Z"></path><ellipse class="l4u-balloon-gloss" cx="213" cy="185" rx="7" ry="10"></ellipse></g>
+              </svg>
+            </div>
+
+            <svg class="l4u-kite-group" viewBox="0 0 240 220" aria-hidden="true" focusable="false">
+              <path class="l4u-kite-line" d="M228 212 C188 191 152 171 127 142"></path>
+              <path class="l4u-kite-line" d="M228 212 C198 204 170 197 145 187"></path>
+
+              <g class="l4u-kite is-primary">
+                <path class="l4u-kite-sail" d="M126 74 L160 108 L126 144 L92 108 Z"></path>
+                <path class="l4u-kite-sail-cross" d="M126 74 L126 144 M92 108 L160 108"></path>
+                <path class="l4u-kite-tail" d="M126 144 C132 157 139 168 148 176"></path>
+                <circle class="l4u-kite-tail-knot" cx="136" cy="158" r="4"></circle>
+                <circle class="l4u-kite-tail-knot" cx="145" cy="170" r="3.6"></circle>
+              </g>
+
+              <g class="l4u-kite is-secondary">
+                <path class="l4u-kite-sail" d="M78 102 L102 126 L78 150 L54 126 Z"></path>
+                <path class="l4u-kite-sail-cross" d="M78 102 L78 150 M54 126 L102 126"></path>
+                <path class="l4u-kite-tail" d="M78 150 C84 161 90 170 98 178"></path>
+                <circle class="l4u-kite-tail-knot" cx="87" cy="162" r="3.5"></circle>
+                <circle class="l4u-kite-tail-knot" cx="95" cy="172" r="3.1"></circle>
+              </g>
+            </svg>
+            <div class="l4u-letter-paper">
+              <p id="viewerLetterPaperDate" class="l4u-letter-paper-date">Draft</p>
+              <div class="l4u-letter-script-block">
+                <p id="viewerLetterPaperRecipient" class="l4u-letter-paper-recipient">Dear recipient,</p>
+                <p id="viewerLetterTypedBody" class="l4u-letter-typed" aria-live="polite"></p>
+                <p id="viewerLetterPaperClosing" class="l4u-letter-paper-closing">Warmly,</p>
+                <p id="viewerLetterPaperSignature" class="l4u-letter-paper-signature">Your Name</p>
+              </div>
+              <button id="viewerLetterToCollageButton" type="button" class="l4u-letter-next-button hidden">Next</button>
+            </div>
+            <svg class="l4u-letter-rose" viewBox="0 0 220 360" aria-hidden="true" focusable="false">
+              <path class="l4u-rose-stem" d="M109 95 C107 160 122 240 112 346"></path>
+              <path class="l4u-rose-stem-highlight" d="M114 102 C112 168 126 244 116 344"></path>
+              <path class="l4u-rose-thorn" d="M114 188 L131 181 L116 199"></path>
+              <path class="l4u-rose-thorn" d="M109 250 L91 244 L108 263"></path>
+              <path class="l4u-rose-leaf" d="M111 167 C78 142 50 146 34 176 C58 194 84 192 111 167 Z"></path>
+              <path class="l4u-rose-leaf is-right" d="M112 220 C143 194 171 198 188 227 C163 245 138 243 112 220 Z"></path>
+              <g class="l4u-rose-bloom">
+                <path class="l4u-rose-petal is-back-left" d="M108 63 C90 45 64 49 56 73 C75 83 92 79 108 67 Z"></path>
+                <path class="l4u-rose-petal is-back-right" d="M111 64 C128 43 153 47 162 70 C145 82 126 80 111 68 Z"></path>
+                <path class="l4u-rose-petal is-top" d="M109 57 C97 37 109 16 132 14 C135 36 128 51 113 63 Z"></path>
+                <path class="l4u-rose-petal is-mid-left" d="M109 71 C97 57 80 59 73 76 C86 85 99 84 109 73 Z"></path>
+                <path class="l4u-rose-petal is-mid-right" d="M109 72 C122 56 141 58 149 76 C135 87 121 85 109 75 Z"></path>
+                <path class="l4u-rose-petal is-front" d="M109 76 C96 64 103 47 124 47 C126 61 121 74 109 76 Z"></path>
+                <circle class="l4u-rose-core" cx="110" cy="66" r="7"></circle>
+              </g>
+            </svg>
+          </div>
+        </div>
+
+        <div id="viewerCollageStage" class="l4u-collage-stage hidden">
+          <div class="l4u-collage-header">
+            <p class="l4u-collage-kicker">Memories</p>
+            <h3 class="l4u-collage-title">Photo Collage</h3>
+            <p class="l4u-collage-text">Tap any polaroid to view it in 3D and swipe through memories.</p>
+            <div class="l4u-collage-actions">
+              <button id="viewerBackToLetterButton" type="button" class="l4u-collage-action-button">Back to Letter</button>
+              <button id="viewerCreateOwnLetterButton" type="button" class="l4u-collage-action-button is-primary">Create Your Own Letter</button>
+            </div>
+          </div>
+          <div id="viewerPolaroidGrid" class="l4u-polaroid-grid"></div>
+        </div>
+
+        <div id="viewerPhotoLightbox" class="l4u-photo-lightbox hidden" role="dialog" aria-modal="true" aria-label="Photo viewer">
+          <button id="viewerPhotoLightboxClose" type="button" class="l4u-photo-lightbox-close" aria-label="Close photo viewer">Close</button>
+          <div id="viewerPhotoLightboxFrame" class="l4u-photo-lightbox-frame"></div>
+          <p id="viewerPhotoLightboxCaption" class="l4u-photo-lightbox-caption"></p>
+        </div>
+      </section>
+    </section>
+
+    <section id="viewerCrtSection" class="l4u-crt-experience hidden" aria-label="CRT retro viewer">
+      <div class="l4u-crt-room">
+        <div id="viewerCrtVolumeGate" class="l4u-crt-gate-modal" role="dialog" aria-modal="true" aria-labelledby="viewerCrtGateTitle">
+          <div class="l4u-crt-gate-card">
+            <p class="l4u-crt-gate-kicker">Best Experience</p>
+            <h2 id="viewerCrtGateTitle" class="l4u-crt-gate-title">Set your volume to max</h2>
+            <p class="l4u-crt-gate-text">For the full retro mood, increase your volume, then allow background music when prompted.</p>
+            <button id="viewerCrtVolumeGateButton" type="button" class="l4u-crt-gate-button">Continue</button>
+          </div>
+        </div>
+
+        <div id="viewerCrtWarning" class="l4u-crt-warning" role="status" aria-live="polite">
+          <div id="viewerCrtCountdownDial" class="l4u-crt-countdown-dial">
+            <div id="viewerCrtCountdownRing" class="l4u-crt-countdown-ring">
+              <span id="viewerCrtCountdown" class="l4u-crt-countdown-number">3</span>
+            </div>
+          </div>
+          <p id="viewerCrtAudioStatus" class="l4u-crt-warning-text">Initializing signal...</p>
+        </div>
+
+        <div id="viewerCrtMusicNotes" class="l4u-crt-music-notes" aria-hidden="true"></div>
+
+        <div id="viewerCrtVinyl" class="l4u-crt-vinyl" aria-hidden="true"></div>
+
+        <article class="l4u-crt-tv" aria-label="Retro CRT television">
+          <div class="l4u-crt-screen-shell">
+            <div class="l4u-crt-screen">
+              <div id="viewerCrtSlidesTrack" class="l4u-crt-slides-track" aria-live="off"></div>
+              <div id="viewerCrtStaticLayer" class="l4u-crt-static-layer" aria-hidden="true"></div>
+              <div class="l4u-crt-scanlines" aria-hidden="true"></div>
+              <div class="l4u-crt-glow" aria-hidden="true"></div>
+            </div>
+          </div>
+
+          <div class="l4u-crt-controls">
+            <div class="l4u-crt-display-row">
+              <span class="l4u-crt-led"></span>
+              <span class="l4u-crt-led"></span>
+              <span class="l4u-crt-led"></span>
+            </div>
+            <div class="l4u-crt-music-meter" aria-hidden="true">
+              <span class="l4u-crt-meter-bar"></span>
+              <span class="l4u-crt-meter-bar"></span>
+              <span class="l4u-crt-meter-bar"></span>
+              <span class="l4u-crt-meter-bar"></span>
+              <span class="l4u-crt-meter-bar"></span>
+              <span class="l4u-crt-meter-bar"></span>
+              <span class="l4u-crt-meter-bar"></span>
+              <span class="l4u-crt-meter-bar"></span>
+            </div>
+            <div class="l4u-crt-knob-row">
+              <span class="l4u-crt-knob"></span>
+              <span class="l4u-crt-knob"></span>
+              <button id="viewerCrtPlaybackToggle" type="button" class="l4u-crt-playback-button" aria-label="Pause slideshow and music">Pause</button>
+            </div>
+          </div>
+
+          <div class="l4u-crt-meta-row">
+            <p id="viewerCrtTitle" class="l4u-crt-title">Retro TV Memory Reel</p>
+            <p id="viewerCrtDate" class="l4u-crt-date">Draft</p>
+          </div>
+        </article>
+
+        <div class="l4u-crt-audio-host" aria-hidden="true">
+          <iframe
+            id="viewerCrtYoutubeFrame"
+            title="Background YouTube player"
+            src="about:blank"
+            allow="autoplay; encrypted-media; picture-in-picture"
+            referrerpolicy="strict-origin-when-cross-origin"
+          ></iframe>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div data-l4u-footer></div>
+  <div data-l4u-modals></div>
+
+  <script type="module" src="/scripts/firebase-client.js"></script>
+  <script defer src="/scripts/site.js"></script>
+  <script defer src="/scripts/viewer.js"></script>
+</body>
+</html>

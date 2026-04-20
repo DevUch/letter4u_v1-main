@@ -1,0 +1,74 @@
+{
+  "rules": {
+    ".read": false,
+    ".write": false,
+    "publicStats": {
+      ".read": true,
+      ".write": "auth != null && auth.token.admin === true",
+      "users": {
+        ".validate": "newData.isNumber() && newData.val() >= 0"
+      },
+      "pages": {
+        ".validate": "newData.isNumber() && newData.val() >= 0"
+      },
+      "$other": {
+        ".validate": false
+      }
+    },
+    "publicConfig": {
+      "supportGate": {
+        ".read": true,
+        ".write": "auth != null && auth.token.admin === true",
+        "tiktokUrl": {
+          ".validate": "newData.isString() && newData.val().length <= 512"
+        },
+        "instagramVideoUrl": {
+          ".validate": "newData.isString() && newData.val().length <= 512"
+        },
+        "updatedAt": {
+          ".validate": "newData.isNumber() && newData.val() > 0"
+        },
+        "updatedBy": {
+          ".validate": "newData.isString() && newData.val().length <= 128"
+        },
+        "$other": {
+          ".validate": false
+        }
+      },
+      "$other": {
+        ".validate": false
+      }
+    },
+    "users": {
+      "$uid": {
+        ".read": "auth != null && (auth.uid === $uid || auth.token.admin === true)",
+        ".write": "auth != null && auth.token.admin === true",
+        ".validate": "auth != null",
+        "credits": {
+          ".write": "auth != null && auth.token.admin === true",
+          ".validate": "newData.isNumber() && newData.val() >= 0"
+        },
+        "displayName": {
+          ".validate": "newData.isString() && newData.val().length > 0 && newData.val().length <= 80"
+        },
+        "email": {
+          ".validate": "newData.isString() && newData.val().matches(/^[^@\\s]+@[^@\\s]+\\.[^@\\s]+$/)"
+        },
+        "updatedAt": {
+          ".validate": "newData.isNumber() && newData.val() > 0 && newData.val() <= now"
+        },
+        "supportRewardClaimed": {
+          ".write": "auth != null && auth.token.admin === true",
+          ".validate": "newData.isBoolean() && (newData.val() === true || !data.exists())"
+        },
+        "supportRewardClaimedAt": {
+          ".write": "auth != null && auth.token.admin === true",
+          ".validate": "newData.isNumber() && newData.val() > 0 && (!data.exists() || newData.val() === data.val())"
+        },
+        "$other": {
+          ".validate": false
+        }
+      }
+    }
+  }
+}

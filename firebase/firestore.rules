@@ -1,0 +1,111 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function signedIn() {
+      return request.auth != null;
+    }
+
+    function isAdmin() {
+      return signedIn() && request.auth.token.admin == true;
+    }
+
+    function isOwner(uid) {
+      return signedIn() && request.auth.uid == uid;
+    }
+
+    function pageAllowedKeys(page) {
+      return page.keys().hasOnly([
+        "uid",
+        "templateType",
+        "title",
+        "recipient",
+        "date",
+        "pinCode",
+        "message",
+        "closing",
+        "signature",
+        "youtubeUrl",
+        "photos",
+        "isPublished",
+        "createdAt",
+        "createdAtMs",
+        "updatedAtMs",
+        "updatedAt"
+      ]);
+    }
+
+    function pageRequiredKeys(page) {
+      return page.keys().hasAll([
+        "uid",
+        "templateType",
+        "title",
+        "recipient",
+        "date",
+        "pinCode",
+        "message",
+        "closing",
+        "signature",
+        "youtubeUrl",
+        "photos",
+        "isPublished",
+        "createdAt",
+        "createdAtMs",
+        "updatedAtMs",
+        "updatedAt"
+      ]);
+    }
+
+    function validTemplateType(value) {
+      return value is string && (value == "love-lock" || value == "crt-retro");
+    }
+
+    function validPagePayload(page) {
+      return pageAllowedKeys(page)
+        && pageRequiredKeys(page)
+        && page.uid is string
+        && page.uid.size() > 0
+        && page.uid.size() <= 128
+        && validTemplateType(page.templateType)
+        && page.title is string
+        && page.title.size() > 0
+        && page.title.size() <= 200
+        && page.recipient is string
+        && page.recipient.size() <= 120
+        && page.date is string
+        && page.date.size() <= 80
+        && page.pinCode is string
+        && page.pinCode.size() <= 4
+        && (page.pinCode == "" || page.pinCode.matches("^\\d{4}$"))
+        && page.message is string
+        && page.message.size() > 0
+        && page.message.size() <= 5000
+        && page.closing is string
+        && page.closing.size() <= 120
+        && page.signature is string
+        && page.signature.size() <= 120
+        && page.youtubeUrl is string
+        && page.youtubeUrl.size() <= 420
+        && page.photos is list
+        && page.photos.size() <= 30
+        && page.isPublished == true
+        && page.createdAt is string
+        && page.createdAt.size() > 0
+        && page.createdAt.size() <= 80
+        && page.createdAtMs is int
+        && page.createdAtMs > 0
+        && page.updatedAtMs is int
+        && page.updatedAtMs >= page.createdAtMs
+        && page.updatedAt is timestamp;
+    }
+
+    match /pages/{pageId} {
+      allow read: if resource.data.isPublished == true || isAdmin() || isOwner(resource.data.uid);
+
+      allow create, update, delete: if false;
+    }
+
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

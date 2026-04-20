@@ -1,0 +1,74 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Letter4U | My Pages</title>
+  <meta name="description" content="Manage your saved and published Letter4U pages from one dashboard." />
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="canonical" href="https://letter4u.me/my-pages" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;700;800&family=Manrope:wght@400;500;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../css/tailwind.generated.css" />
+  <link rel="stylesheet" href="../css/site.css" />
+</head>
+<body class="l4u-body bg-lfu-surface text-lfu-ink font-body" data-page="my-pages">
+  <div class="l4u-background" aria-hidden="true">
+    <span class="l4u-blob l4u-blob-a"></span>
+    <span class="l4u-blob l4u-blob-b"></span>
+    <span class="l4u-blob l4u-blob-c"></span>
+  </div>
+
+  <div data-l4u-nav></div>
+
+  <main class="relative z-10 pb-12">
+    <section class="w-full pt-2" data-reveal>
+      <a
+        href="https://fb.com/devk08"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="l4u-home-announcement"
+        aria-label="Custom website commission is available. Open Facebook profile fb.com/devk08"
+      >
+        <span class="l4u-home-announcement-track">
+          <span class="l4u-home-announcement-text">CUSTOM WEBSITE COMMISION IS AVAILABLE DM ME AT FACEBOOK fb.com/devk08</span>
+          <span class="l4u-home-announcement-text" aria-hidden="true">CLICK ME TO SEND A MESSAGE</span>
+          <span class="l4u-home-announcement-text" aria-hidden="true">CUSTOM WEBSITE COMMISION IS AVAILABLE DM ME AT FACEBOOK fb.com/devk08</span>
+          <span class="l4u-home-announcement-text" aria-hidden="true">CLICK ME TO SEND A MESSAGE</span>
+        </span>
+      </a>
+    </section>
+
+    <section class="mx-auto w-full max-w-7xl px-4 pt-10 md:px-8">
+      <header class="mb-8" data-reveal>
+        <p class="l4u-kicker">Page Library</p>
+        <div class="mt-3 flex flex-wrap items-end justify-between gap-4">
+          <div>
+            <h1 class="font-headline text-4xl font-extrabold tracking-tight text-lfu-ink md:text-5xl">My saved pages</h1>
+            <p id="draftCounter" class="mt-2 text-sm text-lfu-outline">0 published pages</p>
+          </div>
+          <a href="create" class="l4u-gradient-button rounded-full px-5 py-3 text-xs font-bold uppercase tracking-[0.1em]">Create New Page</a>
+        </div>
+      </header>
+
+      <section class="l4u-surface-glass rounded-3xl p-5 md:p-6" data-reveal>
+        <label class="text-[0.68rem] font-semibold uppercase tracking-[0.11em] text-lfu-outline" for="draftSearch">Search Pages</label>
+        <input id="draftSearch" type="search" placeholder="Title, recipient, or message..." class="mt-2 w-full rounded-2xl border-none bg-lfu-surface-low px-4 py-3 text-sm" />
+      </section>
+
+      <section id="draftList" class="mt-6 grid gap-4" data-reveal></section>
+    </section>
+  </main>
+
+  <div data-l4u-footer></div>
+  <div data-l4u-modals></div>
+
+  <script type="module" src="../scripts/firebase-client.js"></script>
+  <script defer src="../scripts/site.js"></script>
+</body>
+</html>
+
+
+

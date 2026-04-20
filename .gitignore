@@ -1,0 +1,4 @@
+node_modules/
+firebase/admin/serviceAccountKey.json
+npm-debug.log*
+.vercel

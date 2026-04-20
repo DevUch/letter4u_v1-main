@@ -1,0 +1,31 @@
+{
+  "name": "letter4u-frontend",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Letter4U frontend with Firebase Auth, Firestore, and Realtime Database sync",
+  "scripts": {
+    "dev": "npm run build:tailwind && npm run serve",
+    "build": "npm run build:tailwind",
+    "build:tailwind": "tailwindcss -c tailwind.config.js -i ./src/tailwind.input.css -o ./css/tailwind.generated.css --minify",
+    "watch:tailwind": "tailwindcss -c tailwind.config.js -i ./src/tailwind.input.css -o ./css/tailwind.generated.css --watch",
+    "serve": "node server/local-server.js",
+    "serve:static": "npx serve .",
+    "vercel:dev": "npx vercel dev",
+    "vercel:deploy": "npx vercel --yes",
+    "vercel:prod": "npx vercel --prod --yes",
+    "firebase:admin:setup": "node firebase/admin/setup-admin.js",
+    "firebase:admin:sync-stats": "node firebase/admin/sync-stats.js"
+  },
+  "dependencies": {
+    "express": "^4.21.2",
+    "firebase-admin": "^12.7.0"
+  },
+  "devDependencies": {
+    "@tailwindcss/container-queries": "^0.1.1",
+    "@tailwindcss/forms": "^0.5.10",
+    "@tailwindcss/typography": "^0.5.16",
+    "firebase-tools": "^13.30.0",
+    "serve": "^14.2.4",
+    "tailwindcss": "^3.4.17"
+  }
+}

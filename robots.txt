@@ -1,0 +1,19 @@
+User-agent: *
+Allow: /
+Disallow: /api/
+Disallow: /admin
+Disallow: /pages/admin
+Disallow: /states
+Disallow: /pages/states
+Disallow: /settings
+Disallow: /pages/settings
+Disallow: /my-pages
+Disallow: /pages/my-pages
+Disallow: /create
+Disallow: /pages/create
+Disallow: /shop
+Disallow: /pages/shop
+Disallow: /viewer
+Disallow: /viewer/
+
+Sitemap: https://letter4u.me/sitemap.xml

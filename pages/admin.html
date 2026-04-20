@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Letter4U | Admin Panel</title>
+  <meta name="description" content="Admin-only Letter4U console for platform monitoring and moderation." />
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="canonical" href="https://letter4u.me/admin" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;700;800&family=Manrope:wght@400;500;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../css/tailwind.generated.css" />
+  <link rel="stylesheet" href="../css/site.css" />
+</head>
+<body class="l4u-body bg-lfu-surface text-lfu-ink font-body" data-page="admin">
+  <div class="l4u-background" aria-hidden="true">
+    <span class="l4u-blob l4u-blob-a"></span>
+    <span class="l4u-blob l4u-blob-b"></span>
+    <span class="l4u-blob l4u-blob-c"></span>
+  </div>
+
+  <div data-l4u-nav></div>
+
+  <main class="relative z-10 pb-12">
+    <section class="mx-auto w-full max-w-7xl px-4 pt-10 md:px-8">
+      <header class="mb-8" data-reveal>
+        <p class="l4u-kicker">Restricted Console</p>
+        <h1 class="mt-3 font-headline text-4xl font-extrabold tracking-tight text-lfu-ink md:text-5xl">Admin Panel</h1>
+        <p class="mt-3 max-w-3xl text-sm text-lfu-outline md:text-base">
+          Monitor platform activity, manage users and credits, and inspect or remove pages.
+        </p>
+      </header>
+
+      <section id="adminAccessMessage" class="l4u-admin-note hidden" aria-hidden="true">Checking admin access...</section>
+
+      <section id="adminDenied" class="l4u-admin-denied hidden" data-reveal>
+        <h2 class="font-headline text-2xl font-bold text-lfu-primary">Access Denied</h2>
+        <p class="mt-2 text-sm text-lfu-outline">
+          This page is visible only to accounts with the admin claim.
+        </p>
+        <button type="button" data-open-modal="signin" class="l4u-gradient-button mt-5 rounded-full px-6 py-3 text-xs font-bold uppercase tracking-[0.1em]">Sign In</button>
+      </section>
+
+      <section id="adminPanel" class="hidden space-y-8">
+        <article class="l4u-admin-collapsible-card" data-reveal>
+          <button
+            id="adminAnalyticsToggle"
+            type="button"
+            class="l4u-admin-collapsible-toggle"
+            aria-expanded="true"
+            aria-controls="adminAnalyticsBody"
+          >
+            <span class="font-headline text-xl font-bold text-lfu-primary">Statistics &amp; Graphs</span>
+            <span class="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.12em] text-lfu-outline">
+              <span id="adminAnalyticsToggleLabel">Collapse</span>
+              <span id="adminAnalyticsToggleIcon" class="l4u-admin-toggle-icon">-</span>
+            </span>
+          </button>
+
+          <div id="adminAnalyticsBody" class="mt-4 space-y-5">
+            <div class="flex justify-end">
+              <button id="adminOverviewLoad" type="button" class="l4u-outline-button rounded-full px-4 py-2 text-xs font-bold uppercase tracking-[0.1em]">Load Stats</button>
+            </div>
+
+            <div class="grid grid-cols-2 gap-4">
+              <article class="l4u-admin-stat-card">
+                <p class="l4u-admin-stat-label">Total Users</p>
+                <p id="adminTotalUsers" class="l4u-admin-stat-value">-</p>
+              </article>
+              <article class="l4u-admin-stat-card">
+                <p class="l4u-admin-stat-label">Total Pages</p>
+                <p id="adminTotalPages" class="l4u-admin-stat-value">-</p>
+              </article>
+              <article class="l4u-admin-stat-card">
+                <p class="l4u-admin-stat-label">Users Today</p>
+                <p id="adminUsersToday" class="l4u-admin-stat-value">-</p>
+              </article>
+              <article class="l4u-admin-stat-card">
+                <p class="l4u-admin-stat-label">Pages Today</p>
+                <p id="adminPagesToday" class="l4u-admin-stat-value">-</p>
+              </article>
+            </div>
+
+            <div class="grid gap-5 xl:grid-cols-2">
+              <article class="l4u-admin-chart-card">
+                <div class="flex items-center justify-between gap-3">
+                  <h2 class="font-headline text-2xl font-bold text-lfu-primary">User Registrations</h2>
+                  <span class="text-[0.62rem] font-semibold uppercase tracking-[0.13em] text-lfu-outline">Past 7 Days</span>
+                </div>
+                <div id="adminUsersChart" class="l4u-admin-chart mt-4"><p class="text-sm text-lfu-outline">Stats not loaded yet.</p></div>
+              </article>
+
+              <article class="l4u-admin-chart-card">
+                <div class="flex items-center justify-between gap-3">
+                  <h2 class="font-headline text-2xl font-bold text-lfu-primary">Pages Created</h2>
+                  <span class="text-[0.62rem] font-semibold uppercase tracking-[0.13em] text-lfu-outline">Past 7 Days</span>
+                </div>
+                <div id="adminPagesChart" class="l4u-admin-chart mt-4"><p class="text-sm text-lfu-outline">Stats not loaded yet.</p></div>
+              </article>
+            </div>
+          </div>
+        </article>
+
+        <article class="l4u-admin-table-card" data-reveal>
+          <div class="flex flex-wrap items-end justify-between gap-3">
+            <div>
+              <p class="l4u-kicker">Support Gate</p>
+              <h2 class="mt-2 font-headline text-3xl font-bold text-lfu-primary">Social Link Config</h2>
+            </div>
+            <p class="text-xs font-semibold uppercase tracking-[0.11em] text-lfu-outline">Public read, admin write</p>
+          </div>
+
+          <form id="adminSupportGateForm" class="mt-4 flex flex-col gap-3 md:flex-row md:items-end">
+            <label class="block flex-1">
+              <span class="text-[0.62rem] font-semibold uppercase tracking-[0.12em] text-lfu-outline">Support gate TikTok URL</span>
+              <input
+                id="adminSupportGateTikTokUrl"
+                type="url"
+                placeholder="https://www.tiktok.com/@yourhandle"
+                class="mt-2 w-full rounded-2xl border-none bg-lfu-surface-low px-4 py-3 text-sm"
+                autocomplete="off"
+              />
+            </label>
+
+            <label class="block flex-1">
+              <span class="text-[0.62rem] font-semibold uppercase tracking-[0.12em] text-lfu-outline">Support gate Instagram post URL</span>
+              <input
+                id="adminSupportGateInstagramVideoUrl"
+                type="url"
+                placeholder="https://www.instagram.com/p/DXJZOkvEsCY/"
+                class="mt-2 w-full rounded-2xl border-none bg-lfu-surface-low px-4 py-3 text-sm"
+                autocomplete="off"
+              />
+              <span id="adminSupportGateMeta" class="mt-2 block text-xs text-lfu-outline">Using app fallback links.</span>
+            </label>
+
+            <div class="flex flex-wrap items-center gap-2 md:justify-end">
+              <button id="adminSupportGateReload" type="button" class="l4u-outline-button rounded-full px-4 py-3 text-xs font-bold uppercase tracking-[0.1em]">Reload</button>
+              <button id="adminSupportGateSave" type="submit" class="l4u-gradient-button rounded-full px-5 py-3 text-xs font-bold uppercase tracking-[0.1em]">Save Link</button>
+            </div>
+          </form>
+        </article>
+
+        <div class="l4u-admin-tabs" role="tablist" aria-label="Admin table tabs" data-reveal>
+          <button
+            id="adminUsersTabButton"
+            type="button"
+            class="l4u-admin-tab-button is-active"
+            role="tab"
+            aria-selected="true"
+            aria-controls="adminUsersPanel"
+            data-admin-tab-button="users"
+          >
+            Users
+          </button>
+          <button
+            id="adminPagesTabButton"
+            type="button"
+            class="l4u-admin-tab-button"
+            role="tab"
+            aria-selected="false"
+            aria-controls="adminPagesPanel"
+            data-admin-tab-button="pages"
+          >
+            Pages
+          </button>
+        </div>
+
+        <section id="adminUsersPanel" data-admin-tab-panel="users" data-reveal>
+          <article class="l4u-admin-table-card">
+            <div class="flex flex-wrap items-end justify-between gap-3">
+              <div>
+                <p class="l4u-kicker">User Management</p>
+                <h2 class="mt-2 font-headline text-3xl font-bold text-lfu-primary">Users</h2>
+              </div>
+              <form id="adminUserSearchForm" class="flex flex-wrap items-center gap-2">
+                <input id="adminUserSearchInput" type="search" placeholder="Search UID or email (partial or exact)" class="rounded-2xl border-none bg-lfu-surface-low px-4 py-3 text-sm" />
+                <button type="submit" class="l4u-outline-button rounded-full px-4 py-3 text-xs font-bold uppercase tracking-[0.1em]">Search</button>
+                <button id="adminUserSearchClear" type="button" class="l4u-outline-button rounded-full px-4 py-3 text-xs font-bold uppercase tracking-[0.1em]">Clear</button>
+              </form>
+            </div>
+
+            <div class="l4u-admin-table-wrap mt-4">
+              <table class="l4u-admin-table">
+                <thead>
+                  <tr>
+                    <th>Date</th>
+                    <th>UID</th>
+                    <th>User</th>
+                    <th>Credits</th>
+                    <th>Adjust</th>
+                  </tr>
+                </thead>
+                <tbody id="adminUsersTableBody"></tbody>
+              </table>
+            </div>
+
+            <div class="mt-4 flex items-center justify-between gap-3">
+              <p id="adminUsersMeta" class="text-xs text-lfu-outline">Showing newest users by signup date.</p>
+              <button id="adminUsersLoadMore" type="button" class="l4u-gradient-button rounded-full px-5 py-3 text-xs font-bold uppercase tracking-[0.1em]">Load More Users</button>
+            </div>
+          </article>
+        </section>
+
+        <section id="adminPagesPanel" data-admin-tab-panel="pages" class="hidden" data-reveal>
+          <article class="l4u-admin-table-card">
+            <div class="flex flex-wrap items-end justify-between gap-3">
+              <div>
+                <p class="l4u-kicker">Page Management</p>
+                <h2 class="mt-2 font-headline text-3xl font-bold text-lfu-primary">Pages</h2>
+              </div>
+              <div class="flex items-center gap-2">
+                <p class="text-xs font-semibold uppercase tracking-[0.11em] text-lfu-outline">Default sort: newest date</p>
+                <button id="adminPagesLoad" type="button" class="l4u-outline-button rounded-full px-4 py-3 text-xs font-bold uppercase tracking-[0.1em]">Load Pages</button>
+              </div>
+            </div>
+
+            <div class="l4u-admin-table-wrap mt-4">
+              <table class="l4u-admin-table">
+                <thead>
+                  <tr>
+                    <th>Date</th>
+                    <th>Page ID</th>
+                    <th>Template</th>
+                    <th>Title</th>
+                    <th>UID</th>
+                    <th>Photos</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="adminPagesTableBody"></tbody>
+              </table>
+            </div>
+
+            <div class="mt-4 flex items-center justify-between gap-3">
+              <p id="adminPagesMeta" class="text-xs text-lfu-outline">Pages are not loaded yet. Click Load Pages.</p>
+              <button id="adminPagesLoadMore" type="button" class="hidden l4u-gradient-button rounded-full px-5 py-3 text-xs font-bold uppercase tracking-[0.1em]">Load More Pages</button>
+            </div>
+          </article>
+        </section>
+
+        <p id="adminActionStatus" class="text-center text-sm text-lfu-outline"></p>
+      </section>
+    </section>
+  </main>
+
+  <div id="adminPageModal" class="l4u-admin-modal" hidden>
+    <div class="l4u-admin-modal-backdrop" data-admin-modal-close></div>
+    <div class="l4u-admin-modal-card">
+      <div class="flex items-start justify-between gap-3">
+        <div>
+          <p class="l4u-kicker">Page Preview</p>
+          <h3 id="adminPageModalTitle" class="mt-2 font-headline text-3xl font-bold text-lfu-primary">Page</h3>
+        </div>
+        <button type="button" class="l4u-outline-button rounded-full px-4 py-2 text-xs font-bold uppercase tracking-[0.1em]" data-admin-modal-close>Close</button>
+      </div>
+
+      <div class="mt-5 grid gap-4 md:grid-cols-2">
+        <div class="rounded-2xl bg-lfu-surface-low p-4 text-sm text-lfu-outline">
+          <p><strong>Page ID:</strong> <span id="adminPageModalId"></span></p>
+          <p class="mt-2"><strong>UID:</strong> <span id="adminPageModalUid"></span></p>
+          <p class="mt-2"><strong>Template:</strong> <span id="adminPageModalTemplate"></span></p>
+          <p class="mt-2"><strong>Date:</strong> <span id="adminPageModalDate"></span></p>
+          <p class="mt-2"><strong>YouTube:</strong> <span id="adminPageModalYoutube"></span></p>
+          <p class="mt-2"><strong>Pin:</strong> <span id="adminPageModalPin"></span></p>
+        </div>
+        <div class="rounded-2xl bg-lfu-surface-low p-4 text-sm text-lfu-outline">
+          <p><strong>Recipient:</strong> <span id="adminPageModalRecipient"></span></p>
+          <p class="mt-2"><strong>Closing:</strong> <span id="adminPageModalClosing"></span></p>
+          <p class="mt-2"><strong>Signature:</strong> <span id="adminPageModalSignature"></span></p>
+          <p class="mt-2"><strong>Photos:</strong> <span id="adminPageModalPhotoCount">0</span></p>
+        </div>
+      </div>
+
+      <div class="mt-4 rounded-2xl bg-lfu-surface-low p-4">
+        <p class="text-[0.65rem] font-semibold uppercase tracking-[0.13em] text-lfu-outline">Message</p>
+        <p id="adminPageModalMessage" class="mt-2 whitespace-pre-wrap text-sm text-lfu-outline"></p>
+      </div>
+
+      <div id="adminPageModalPhotos" class="l4u-photo-grid mt-4"></div>
+    </div>
+  </div>
+
+  <div data-l4u-footer></div>
+  <div data-l4u-modals></div>
+
+  <script type="module" src="../scripts/firebase-client.js"></script>
+  <script defer src="../scripts/site.js"></script>
+  <script defer src="../scripts/admin.js"></script>
+</body>
+</html>

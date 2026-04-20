@@ -1,0 +1,172 @@
+{
+  "outputDirectory": ".",
+  "installCommand": "npm install",
+  "buildCommand": "npm run build",
+  "trailingSlash": false,
+  "redirects": [
+    {
+      "source": "/index",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/home",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/pages/home",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/index.html",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/viewer.html",
+      "destination": "/viewer",
+      "permanent": true
+    },
+    {
+      "source": "/pages/home.html",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/pages/create.html",
+      "destination": "/pages/create",
+      "permanent": true
+    },
+    {
+      "source": "/pages/features",
+      "destination": "/features",
+      "permanent": true
+    },
+    {
+      "source": "/pages/templates",
+      "destination": "/templates",
+      "permanent": true
+    },
+    {
+      "source": "/pages/features.html",
+      "destination": "/features",
+      "permanent": true
+    },
+    {
+      "source": "/pages/templates.html",
+      "destination": "/templates",
+      "permanent": true
+    },
+    {
+      "source": "/features.html",
+      "destination": "/features",
+      "permanent": true
+    },
+    {
+      "source": "/templates.html",
+      "destination": "/templates",
+      "permanent": true
+    },
+    {
+      "source": "/pages/my-pages.html",
+      "destination": "/pages/my-pages",
+      "permanent": true
+    },
+    {
+      "source": "/pages/shop.html",
+      "destination": "/pages/shop",
+      "permanent": true
+    },
+    {
+      "source": "/pages/settings.html",
+      "destination": "/pages/settings",
+      "permanent": true
+    },
+    {
+      "source": "/pages/states.html",
+      "destination": "/pages/states",
+      "permanent": true
+    },
+    {
+      "source": "/pages/admin.html",
+      "destination": "/pages/admin",
+      "permanent": true
+    }
+  ],
+  "rewrites": [
+    {
+      "source": "/api/:path*",
+      "destination": "/api/index?path=:path*"
+    },
+    {
+      "source": "/",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/viewer/:id",
+      "destination": "/viewer.html?id=:id"
+    },
+    {
+      "source": "/viewer",
+      "destination": "/viewer.html"
+    },
+    {
+      "source": "/pages/create",
+      "destination": "/pages/create.html"
+    },
+    {
+      "source": "/pages/my-pages",
+      "destination": "/pages/my-pages.html"
+    },
+    {
+      "source": "/pages/shop",
+      "destination": "/pages/shop.html"
+    },
+    {
+      "source": "/pages/settings",
+      "destination": "/pages/settings.html"
+    },
+    {
+      "source": "/pages/states",
+      "destination": "/pages/states.html"
+    },
+    {
+      "source": "/pages/admin",
+      "destination": "/pages/admin.html"
+    },
+    {
+      "source": "/create",
+      "destination": "/pages/create.html"
+    },
+    {
+      "source": "/features",
+      "destination": "/pages/features.html"
+    },
+    {
+      "source": "/templates",
+      "destination": "/pages/templates.html"
+    },
+    {
+      "source": "/my-pages",
+      "destination": "/pages/my-pages.html"
+    },
+    {
+      "source": "/shop",
+      "destination": "/pages/shop.html"
+    },
+    {
+      "source": "/settings",
+      "destination": "/pages/settings.html"
+    },
+    {
+      "source": "/states",
+      "destination": "/pages/states.html"
+    },
+    {
+      "source": "/admin",
+      "destination": "/pages/admin.html"
+    }
+  ]
+}

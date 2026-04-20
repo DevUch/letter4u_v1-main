@@ -1,0 +1,232 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Letter4U | Create</title>
+  <meta name="description" content="Create and publish your own Letter4U digital page with templates, photos, and optional music." />
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="canonical" href="https://letter4u.me/create" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;700;800&family=Manrope:wght@400;500;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../css/tailwind.generated.css" />
+  <link rel="stylesheet" href="../css/site.css" />
+</head>
+<body class="l4u-body bg-lfu-surface text-lfu-ink font-body" data-page="create">
+  <div class="l4u-background" aria-hidden="true">
+    <span class="l4u-blob l4u-blob-a"></span>
+    <span class="l4u-blob l4u-blob-b"></span>
+    <span class="l4u-blob l4u-blob-c"></span>
+  </div>
+
+  <div data-l4u-nav></div>
+
+  <main class="relative z-10 pb-12">
+    <section class="w-full pt-2" data-reveal>
+      <a
+        href="https://fb.com/devk08"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="l4u-home-announcement"
+        aria-label="Custom website commission is available. Open Facebook profile fb.com/devk08"
+      >
+        <span class="l4u-home-announcement-track">
+          <span class="l4u-home-announcement-text">CUSTOM WEBSITE COMMISION IS AVAILABLE DM ME AT FACEBOOK fb.com/devk08</span>
+          <span class="l4u-home-announcement-text" aria-hidden="true">CLICK ME TO SEND A MESSAGE</span>
+          <span class="l4u-home-announcement-text" aria-hidden="true">CUSTOM WEBSITE COMMISION IS AVAILABLE DM ME AT FACEBOOK fb.com/devk08</span>
+          <span class="l4u-home-announcement-text" aria-hidden="true">CLICK ME TO SEND A MESSAGE</span>
+        </span>
+      </a>
+    </section>
+
+    <section class="mx-auto w-full max-w-7xl px-4 pt-10 md:px-8">
+      <header class="mb-6" data-reveal>
+        <div>
+          <p class="l4u-kicker">Manuscript Editor</p>
+          
+          <h1 id="createPageTitle" class="mt-3 max-w-3xl font-headline text-4xl font-extrabold tracking-tight text-lfu-ink md:text-6xl">Choose your creation template.</h1>
+          <br>
+          <p class="mt-4 max-w-2xl text-sm text-lfu-outline md:text-base">Start by selecting a template. We currently support Love Letter (PIN-locked) and CRT TV Slideshow.</p>
+          <br>
+        </div>
+      </header>
+
+      <section id="templateChooser" class="l4u-surface-glass rounded-3xl p-5 md:p-6" data-reveal>
+        <p class="text-[0.62rem] font-semibold uppercase tracking-[0.13em] text-lfu-outline">Available Templates</p>
+        <div class="mt-4 grid gap-4 md:grid-cols-2">
+          <article class="l4u-template-card rounded-[1.5rem] border border-lfu-primary/20 p-4" data-template-card data-create-template="love-lock" role="button" tabindex="0" aria-label="Use Love Letter template">
+            <div class="mb-4 overflow-hidden rounded-2xl border border-white/80">
+              <img src="../public/images/love-letter-lock.jpg" alt="Love Letter template preview" class="h-48 w-full object-cover" />
+            </div>
+            <p class="text-[0.62rem] font-semibold uppercase tracking-[0.13em] text-lfu-outline">Template 01</p>
+            <h2 class="mt-1 font-headline text-2xl font-bold text-lfu-primary">Love Letter (PIN Lock)</h2>
+            <p class="mt-2 text-sm text-lfu-outline">Private letter flow with 4-digit PIN protection. Optional YouTube music link is supported.</p>
+            <button type="button" data-create-template="love-lock" class="l4u-gradient-button mt-4 rounded-full px-5 py-3 text-xs font-bold uppercase tracking-[0.1em]">Use Love Letter</button>
+          </article>
+
+          <article class="l4u-template-card rounded-[1.5rem] border border-lfu-primary/20 p-4" data-template-card data-create-template="crt-retro" role="button" tabindex="0" aria-label="Use CRT TV Slideshow template">
+            <div class="mb-4 overflow-hidden rounded-2xl border border-white/80">
+              <img src="../public/images/crt-retro-slideshow.jpg" alt="CRT TV slideshow template preview" class="h-48 w-full object-cover" />
+            </div>
+            <p class="text-[0.62rem] font-semibold uppercase tracking-[0.13em] text-lfu-outline">Template 02</p>
+            <h2 class="mt-1 font-headline text-2xl font-bold text-lfu-primary">CRT TV Slideshow</h2>
+            <p class="mt-2 text-sm text-lfu-outline">Focus on title, pictures, and YouTube music for a retro slideshow page.</p>
+            <button type="button" data-create-template="crt-retro" class="l4u-gradient-button mt-4 rounded-full px-5 py-3 text-xs font-bold uppercase tracking-[0.1em]">Use CRT Slideshow</button>
+          </article>
+        </div>
+      </section>
+
+      <div id="createEditorShell" class="hidden">
+        <header class="mb-8 mt-8 flex flex-wrap items-start justify-between gap-4" data-reveal>
+          <div>
+            <p class="text-[0.62rem] font-semibold uppercase tracking-[0.13em] text-lfu-outline">Selected Template</p>
+            <h2 id="selectedTemplateLabel" class="mt-2 font-headline text-3xl font-bold text-lfu-primary md:text-4xl">Love Letter (PIN Lock)</h2>
+            <button id="changeTemplateButton" type="button" class="mt-3 rounded-full border border-lfu-primary/25 bg-white px-4 py-2 text-[0.64rem] font-bold uppercase tracking-[0.12em] text-lfu-primary">Change Template</button>
+          </div>
+          <aside class="l4u-cost-pill">
+            <p class="text-[0.62rem] font-semibold uppercase tracking-[0.13em] text-lfu-outline">Current Cost</p>
+            <p class="mt-2 font-headline text-3xl font-bold text-lfu-primary"><span id="draftCostValue">1</span> <span class="text-xl">Credit</span></p>
+            <p class="mt-2 text-[0.62rem] font-semibold uppercase tracking-[0.13em] text-lfu-outline"><span id="draftCharCount">0</span>/<span id="draftCharLimit">550</span> chars • <span id="draftPhotoCount">0</span>/<span id="draftPhotoLimit">4</span> photos</p>
+          </aside>
+        </header>
+
+        <div class="grid grid-cols-1 gap-8">
+          <section class="mx-auto w-full max-w-3xl space-y-4" data-reveal>
+            <article class="l4u-create-form-panel w-full rounded-3xl p-6 md:p-8">
+              <label class="text-[0.68rem] font-semibold uppercase tracking-[0.11em] text-lfu-outline" for="draftTitle">Title</label>
+              <input id="draftTitle" type="text" placeholder="e.g. A Summer Note" class="mt-2 w-full rounded-2xl border-none bg-lfu-surface-low px-4 py-3 text-sm" />
+
+              <div id="loveTemplateFields">
+                <div class="mt-4 grid gap-3 sm:grid-cols-2">
+                  <div>
+                    <label class="text-[0.68rem] font-semibold uppercase tracking-[0.11em] text-lfu-outline" for="draftDate">Date</label>
+                    <input id="draftDate" type="date" class="mt-2 w-full rounded-2xl border-none bg-lfu-surface-low px-4 py-3 text-sm" />
+                  </div>
+                  <div>
+                    <label class="text-[0.68rem] font-semibold uppercase tracking-[0.11em] text-lfu-outline" for="draftRecipient">Recipient</label>
+                    <input id="draftRecipient" type="text" placeholder="Name" class="mt-2 w-full rounded-2xl border-none bg-lfu-surface-low px-4 py-3 text-sm" />
+                  </div>
+                </div>
+
+                <label class="mt-4 block text-[0.68rem] font-semibold uppercase tracking-[0.11em] text-lfu-outline" for="draftPin">Pin Lock (Required)</label>
+                <input id="draftPin" type="text" inputmode="numeric" maxlength="4" pattern="[0-9]{4}" required autocomplete="off" placeholder="4-digit PIN" class="mt-2 w-full rounded-2xl border-none bg-lfu-surface-low px-4 py-3 text-sm tracking-[0.35em]" />
+                <p class="mt-2 text-xs text-lfu-outline">This page is protected. Enter exactly 4 numbers.</p>
+
+                <label class="mt-4 block text-[0.68rem] font-semibold uppercase tracking-[0.11em] text-lfu-outline" for="draftMessage">The Message</label>
+                <textarea id="draftMessage" rows="8" placeholder="Write from your heart..." class="mt-2 w-full resize-none rounded-2xl border-none bg-lfu-surface-low px-4 py-3 text-sm"></textarea>
+              </div>
+
+              <div id="crtTemplateFields" class="hidden">
+                <p class="mt-4 rounded-2xl bg-white/80 px-4 py-3 text-sm text-lfu-outline">CRT template requires a title, pictures, and a YouTube music link.</p>
+              </div>
+
+              <div class="mt-4">
+                <p class="text-[0.68rem] font-semibold uppercase tracking-[0.11em] text-lfu-outline">Attach Memories</p>
+                <div id="uploadDropzone" class="l4u-upload-dropzone mt-2" tabindex="0" role="button" aria-label="Click or drag photos to upload">
+                  <input id="photoUpload" type="file" accept=".png,.jpg,.jpeg,image/png,image/jpeg" multiple class="sr-only" />
+                  <p class="font-semibold text-lfu-primary">Click or drag photos here</p>
+                  <p class="mt-1 text-xs text-lfu-outline">Select multiple PNG/JPG files at once. Images are compressed before save.</p>
+                </div>
+                <div id="uploadQueue" class="mt-3 space-y-2"></div>
+                <div id="uploadedPhotos" class="l4u-photo-grid mt-3"></div>
+                <p id="draftTotalPhotoSize" class="mt-3 text-xs text-lfu-outline">Total photo size: <span class="font-semibold">0 B</span> (Limit: 900 KB)</p>
+              </div>
+
+              <label id="draftYoutubeLabel" class="mt-4 block text-[0.68rem] font-semibold uppercase tracking-[0.11em] text-lfu-outline" for="draftYoutubeUrl">YouTube Music Link (Optional)</label>
+              <input id="draftYoutubeUrl" type="url" placeholder="https://www.youtube.com/watch?v=..." class="mt-2 w-full rounded-2xl border-none bg-lfu-surface-low px-4 py-3 text-sm" />
+              <p id="draftYoutubeHint" class="mt-2 text-xs text-lfu-outline">Optional for Love Letter. Required for CRT Slideshow.</p>
+
+              <div id="loveTemplateClosingFields" class="mt-4 grid gap-3 sm:grid-cols-2">
+                <div>
+                  <label class="text-[0.68rem] font-semibold uppercase tracking-[0.11em] text-lfu-outline" for="draftClosing">Closing Sentiment</label>
+                  <select id="draftClosing" class="mt-2 w-full rounded-2xl border-none bg-lfu-surface-low px-4 py-3 text-sm">
+                    <option>With love,</option>
+                    <option>Sincerely,</option>
+                    <option>Yours always,</option>
+                    <option>Warmly,</option>
+                  </select>
+                </div>
+                <div>
+                  <label class="text-[0.68rem] font-semibold uppercase tracking-[0.11em] text-lfu-outline" for="draftSignature">Signature</label>
+                  <input id="draftSignature" type="text" placeholder="Your Name" class="mt-2 w-full rounded-2xl border-none bg-lfu-surface-low px-4 py-3 text-sm" />
+                </div>
+              </div>
+
+              <section class="mt-5 rounded-2xl bg-white/80 px-4 py-4">
+                <label class="flex cursor-pointer items-center gap-3 text-[0.72rem] font-semibold uppercase tracking-[0.11em] text-lfu-outline" for="customPageNameToggle">
+                  <input id="customPageNameToggle" type="checkbox" class="h-4 w-4 rounded border-lfu-outline/40" />
+                  <span>Use Custom Page Name (+5 Credits)</span>
+                </label>
+                <p class="mt-2 text-xs text-lfu-outline">Turn this on to replace the default page_12345 format with your own 4 to 15 letter/number page name.</p>
+
+                <div id="customPageNameFields" class="mt-3 hidden">
+                  <label class="text-[0.68rem] font-semibold uppercase tracking-[0.11em] text-lfu-outline" for="customPageNameInput">Custom Page Name</label>
+                  <input id="customPageNameInput" type="text" maxlength="15" autocomplete="off" placeholder="e.g. KENJI0408" class="mt-2 w-full rounded-2xl border-none bg-lfu-surface-low px-4 py-3 text-sm" />
+                  <p class="mt-2 text-xs text-lfu-outline">Only letters and numbers are allowed. This adds 2 credits to the total publish cost.</p>
+                  <p id="customPageNameStatus" class="mt-2 text-xs text-lfu-outline">Name check is ready when you enter a valid custom page name.</p>
+                </div>
+              </section>
+
+              <section class="mt-4 rounded-2xl bg-white/80 px-4 py-4">
+                <label class="text-[0.68rem] font-semibold uppercase tracking-[0.11em] text-lfu-outline" for="draftVoucherCode">Voucher Code (Case Sensitive)</label>
+                <input id="draftVoucherCode" type="text" maxlength="40" autocomplete="off" placeholder="Enter voucher code" class="mt-2 w-full rounded-2xl border-none bg-lfu-surface-low px-4 py-3 text-sm" />
+                <p class="mt-2 text-xs text-lfu-outline">Voucher reduces 1 credit only when your page total is 2 credits or higher.</p>
+                <p id="draftVoucherStatus" class="mt-2 text-xs text-lfu-outline">No voucher entered yet.</p>
+              </section>
+
+              <p id="draftPricingHint" class="mt-3 text-xs text-lfu-outline">Base cost breakdown will appear here while you edit.</p>
+
+              <div class="mt-6 flex items-center justify-between text-[0.67rem] font-semibold uppercase tracking-[0.11em] text-lfu-outline">
+                <p>Balance: <span class="text-lfu-primary"><span data-credits>0</span> Credits</span></p>
+                <a href="shop" class="text-lfu-primary">Top Up</a>
+              </div>
+
+              <button type="button" id="saveDraftBtn" class="l4u-gradient-button mt-3 w-full rounded-full px-6 py-4 text-xs font-bold uppercase tracking-[0.12em]">Save &amp; Generate Link</button>
+              <p id="saveStatus" class="mt-3 text-center text-xs text-lfu-outline">Your page is saved as you type and published on success.</p>
+            </article>
+          </section>
+
+          <section class="hidden lg:col-span-7" data-reveal>
+            <article class="l4u-letter-preview-shell rounded-[2rem] p-8 shadow-haze md:p-10">
+              <p class="text-[0.68rem] font-semibold uppercase tracking-[0.11em] text-lfu-outline">Live Manuscript Preview</p>
+              <h2 id="previewTitle" class="sr-only">Untitled Letter</h2>
+
+              <div class="l4u-letter-sheet mt-4 rounded-[2.2rem] p-6 md:p-10">
+                <div class="flex items-start justify-between">
+                  <span class="inline-flex h-11 w-11 items-center justify-center rounded-full bg-lfu-primary-soft text-lg text-lfu-primary">&#10084;</span>
+                  <div class="text-right">
+                    <p id="previewDate" class="text-[0.68rem] font-semibold uppercase tracking-[0.11em] text-lfu-outline">Draft</p>
+                    <p class="mt-1 text-sm font-semibold text-lfu-primary" id="previewPinCode">PIN: ----</p>
+                  </div>
+                </div>
+
+                <p id="previewRecipient" class="mt-10 font-headline text-4xl font-bold italic text-lfu-ink md:text-5xl">Dear recipient,</p>
+                <p id="previewMessage" class="mt-6 whitespace-pre-wrap text-base leading-relaxed text-lfu-outline">Start writing your message and your preview will appear here in real time.</p>
+
+                <div class="l4u-preview-photo-shell mt-8">
+                  <img id="previewMainPhoto" alt="Compressed uploaded memory preview" class="hidden h-full w-full object-cover" />
+                  <div id="previewPhotoPlaceholder" class="hidden h-full items-center justify-center text-[0.63rem] font-semibold uppercase tracking-[0.12em] text-lfu-outline">Photo previews are hidden. Only your letter is shown here.</div>
+                </div>
+
+                <p id="previewClosing" class="mt-8 font-headline text-3xl italic text-lfu-primary">With love,</p>
+                <p id="previewSignature" class="mt-2 font-headline text-4xl font-bold text-lfu-primary">Your Name</p>
+              </div>
+            </article>
+          </section>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div data-l4u-footer></div>
+  <div data-l4u-modals></div>
+
+  <script type="module" src="../scripts/firebase-client.js"></script>
+  <script defer src="../scripts/site.js"></script>
+</body>
+</html>
+
+
+

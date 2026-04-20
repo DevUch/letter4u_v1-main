@@ -1,0 +1,67 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Letter4U | State Playground</title>
+  <meta name="description" content="Internal Letter4U state playground for testing transitions and modal flows." />
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="canonical" href="https://letter4u.me/states" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;700;800&family=Manrope:wght@400;500;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../css/tailwind.generated.css" />
+  <link rel="stylesheet" href="../css/site.css" />
+</head>
+<body class="l4u-body bg-lfu-surface text-lfu-ink font-body" data-page="states">
+  <div class="l4u-background" aria-hidden="true">
+    <span class="l4u-blob l4u-blob-a"></span>
+    <span class="l4u-blob l4u-blob-b"></span>
+    <span class="l4u-blob l4u-blob-c"></span>
+  </div>
+
+  <div data-l4u-nav></div>
+
+  <main class="relative z-10 pb-12">
+    <section class="mx-auto w-full max-w-6xl px-4 pt-10 md:px-8">
+      <header class="mb-8" data-reveal>
+        <p class="l4u-kicker">System Playground</p>
+        <h1 class="mt-3 font-headline text-4xl font-extrabold tracking-tight text-lfu-ink md:text-5xl">Trigger all modal and state transitions.</h1>
+        <p id="stateSnapshot" class="mt-4 text-sm text-lfu-outline">Signed In: false | Credits: 0 | Drafts: 0</p>
+      </header>
+
+      <section class="grid gap-4 md:grid-cols-2" data-reveal>
+        <article class="l4u-surface-glass rounded-3xl p-6">
+          <h2 class="font-headline text-2xl font-bold text-lfu-primary">Core Modals</h2>
+          <p class="mt-2 text-sm text-lfu-outline">Open each modal independently to validate transitions and layout.</p>
+          <div class="mt-4 flex flex-wrap gap-2">
+            <button type="button" data-open-modal="signin" data-auth-visible="signed-out" class="l4u-outline-button rounded-full px-4 py-2 text-xs font-bold uppercase tracking-[0.1em]">Sign In</button>
+            <button type="button" data-open-modal="manual-payment" class="l4u-outline-button rounded-full px-4 py-2 text-xs font-bold uppercase tracking-[0.1em]">Manual Payment</button>
+            <button type="button" id="stateLowCreditsButton" class="l4u-outline-button rounded-full px-4 py-2 text-xs font-bold uppercase tracking-[0.1em]">Low Credits</button>
+            <button type="button" id="stateSuccessButton" class="l4u-outline-button rounded-full px-4 py-2 text-xs font-bold uppercase tracking-[0.1em]">Success</button>
+          </div>
+        </article>
+
+        <article class="l4u-surface-glass rounded-3xl p-6">
+          <h2 class="font-headline text-2xl font-bold text-lfu-primary">Workflow Animations</h2>
+          <p class="mt-2 text-sm text-lfu-outline">Run save/progress animation and reset app state quickly.</p>
+          <div class="mt-4 flex flex-wrap gap-2">
+            <button type="button" id="stateSavingButton" class="l4u-gradient-button rounded-full px-4 py-2 text-xs font-bold uppercase tracking-[0.1em]">Run Saving Flow</button>
+            <button type="button" id="stateResetButton" class="l4u-outline-button rounded-full px-4 py-2 text-xs font-bold uppercase tracking-[0.1em]">Reset Demo State</button>
+          </div>
+        </article>
+      </section>
+    </section>
+  </main>
+
+  <div data-l4u-footer></div>
+  <div data-l4u-modals></div>
+
+  <script type="module" src="../scripts/firebase-client.js"></script>
+  <script defer src="../scripts/site.js"></script>
+</body>
+</html>
+
+
+

@@ -1,0 +1,172 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Letter4U | Settings</title>
+  <meta name="description" content="Update account and workspace preferences for your Letter4U profile." />
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="canonical" href="https://letter4u.me/settings" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;700;800&family=Manrope:wght@400;500;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../css/tailwind.generated.css" />
+  <link rel="stylesheet" href="../css/site.css" />
+</head>
+<body class="l4u-body bg-lfu-surface text-lfu-ink font-body" data-page="settings">
+  <div class="l4u-background" aria-hidden="true">
+    <span class="l4u-blob l4u-blob-a"></span>
+    <span class="l4u-blob l4u-blob-b"></span>
+    <span class="l4u-blob l4u-blob-c"></span>
+  </div>
+
+  <div data-l4u-nav></div>
+
+  <main class="relative z-10 pb-12">
+    <section class="w-full pt-2" data-reveal>
+      <a
+        href="https://fb.com/devk08"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="l4u-home-announcement"
+        aria-label="Custom website commission is available. Open Facebook profile fb.com/devk08"
+      >
+        <span class="l4u-home-announcement-track">
+          <span class="l4u-home-announcement-text">CUSTOM WEBSITE COMMISION IS AVAILABLE DM ME AT FACEBOOK fb.com/devk08</span>
+          <span class="l4u-home-announcement-text" aria-hidden="true">CLICK ME TO SEND A MESSAGE</span>
+          <span class="l4u-home-announcement-text" aria-hidden="true">CUSTOM WEBSITE COMMISION IS AVAILABLE DM ME AT FACEBOOK fb.com/devk08</span>
+          <span class="l4u-home-announcement-text" aria-hidden="true">CLICK ME TO SEND A MESSAGE</span>
+        </span>
+      </a>
+    </section>
+
+    <section class="l4u-settings-shell mx-auto w-full max-w-6xl px-4 pt-10 md:px-8">
+      <header class="mb-7" data-reveal>
+        <h1 class="l4u-settings-title">Settings</h1>
+        <p class="l4u-settings-subtitle">Refine your personal workspace and account preferences.</p>
+      </header>
+
+      <form id="settingsForm" class="l4u-settings-form" data-reveal>
+        <section class="l4u-settings-profile-row">
+          <div>
+            <p class="l4u-settings-mini-label">Display Name</p>
+            <input id="settingDisplayName" type="text" class="l4u-settings-name-input" placeholder="Your display name" />
+          </div>
+          <div class="l4u-settings-uid-block">
+            <p class="l4u-settings-mini-label">Account UID</p>
+            <p id="settingAccountUid" class="l4u-settings-uid-value">Not signed in</p>
+            <button type="button" id="copyAccountUidButton" class="l4u-settings-uid-copy">Copy UID</button>
+          </div>
+        </section>
+
+        <div class="l4u-settings-grid">
+          <article class="l4u-settings-card">
+            <header class="l4u-settings-card-head">
+              <span class="l4u-settings-icon-badge l4u-settings-icon-notify"><span class="material-symbols-outlined">notifications</span></span>
+              <h2 class="l4u-settings-card-title">Notifications</h2>
+            </header>
+
+            <label class="l4u-settings-row" for="settingDigest">
+              <span>
+                <span class="l4u-settings-row-title">Email Alerts</span>
+                <span class="l4u-settings-row-subtitle">Weekly digests &amp; updates</span>
+              </span>
+              <span class="l4u-switch l4u-switch-rose">
+                <input id="settingDigest" type="checkbox" />
+                <span class="l4u-switch-track" aria-hidden="true"></span>
+              </span>
+            </label>
+
+            <label class="l4u-settings-row" for="settingAutosave">
+              <span>
+                <span class="l4u-settings-row-title">Draft Autosave</span>
+                <span class="l4u-settings-row-subtitle">Instant writing protection</span>
+              </span>
+              <span class="l4u-switch l4u-switch-neutral">
+                <input id="settingAutosave" type="checkbox" />
+                <span class="l4u-switch-track" aria-hidden="true"></span>
+              </span>
+            </label>
+          </article>
+
+          <article class="l4u-settings-card">
+            <header class="l4u-settings-card-head">
+              <span class="l4u-settings-icon-badge l4u-settings-icon-appearance"><span class="material-symbols-outlined">palette</span></span>
+              <h2 class="l4u-settings-card-title">Appearance</h2>
+            </header>
+
+            <label class="l4u-settings-row" for="settingDarkMode">
+              <span>
+                <span class="l4u-settings-row-title">Dark Mode</span>
+                <span class="l4u-settings-row-subtitle">Reduce eye strain</span>
+              </span>
+              <span class="l4u-switch l4u-switch-neutral">
+                <input id="settingDarkMode" type="checkbox" />
+                <span class="l4u-switch-track" aria-hidden="true"></span>
+              </span>
+            </label>
+
+            <label class="l4u-settings-row" for="settingReducedMotion">
+              <span>
+                <span class="l4u-settings-row-title">Reduced Motion</span>
+                <span class="l4u-settings-row-subtitle">Softer transitions</span>
+              </span>
+              <span class="l4u-switch l4u-switch-lilac">
+                <input id="settingReducedMotion" type="checkbox" disabled />
+                <span class="l4u-switch-track" aria-hidden="true"></span>
+              </span>
+            </label>
+          </article>
+        </div>
+
+        <section class="l4u-settings-account">
+          <div>
+            <h2 class="l4u-settings-account-title">Account Management</h2>
+            <p class="l4u-settings-account-subtitle">Manage your sign-in state for Letter4U.</p>
+          </div>
+          <div class="l4u-settings-account-actions l4u-settings-account-actions-centered">
+            <button type="button" data-open-modal="signin" data-auth-visible="signed-out" class="l4u-settings-ghost-button">Sign In</button>
+            <button type="button" id="signOutButton" data-auth-visible="signed-in" class="l4u-settings-danger-button">Sign Out</button>
+          </div>
+        </section>
+
+        <p id="settingsStatus" class="l4u-settings-status"></p>
+      </form>
+
+      <section class="l4u-settings-social" data-reveal>
+        <h2 class="l4u-settings-social-title">Connect with Us</h2>
+        <p class="l4u-settings-social-subtitle">Join our community of modern writers.</p>
+
+        <div class="l4u-settings-social-grid">
+          <a href="mailto:kenjibuena.business@gmail.com" class="l4u-settings-social-card" aria-label="Email kenjibuena.business@gmail.com">
+            <span class="material-symbols-outlined">alternate_email</span>
+            <span>Email</span>
+          </a>
+          <a href="https://ph.linkedin.com/in/kenji-buena-9a2444385" target="_blank" rel="noopener noreferrer" class="l4u-settings-social-card" aria-label="LinkedIn profile">
+            <span class="material-symbols-outlined">work</span>
+            <span>LinkedIn</span>
+          </a>
+          <a href="https://www.tiktok.com/@kiiinji" target="_blank" rel="noopener noreferrer" class="l4u-settings-social-card" aria-label="TikTok @kiiinji">
+            <span class="material-symbols-outlined">smart_display</span>
+            <span>TikTok</span>
+          </a>
+          <a href="https://fb.com/devk08" target="_blank" rel="noopener noreferrer" class="l4u-settings-social-card" aria-label="Facebook fb.com/devk08">
+            <span class="material-symbols-outlined">public</span>
+            <span>Facebook</span>
+          </a>
+        </div>
+      </section>
+    </section>
+  </main>
+
+  <div data-l4u-footer></div>
+  <div data-l4u-modals></div>
+
+  <script type="module" src="../scripts/firebase-client.js"></script>
+  <script defer src="../scripts/site.js"></script>
+</body>
+</html>
+
+
+
